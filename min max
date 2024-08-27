@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+typedef struct Node {
+    int data;             
+    struct Node* left;     
+    struct Node* right;    
+} Node;
+Node* createNode(int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;   
+    return newNode;
+}
+int findMin(Node* root) {
+    if (root == NULL) {
+        return INT_MAX; 
+    }
+    int rootValue = root->data;
+    int leftMin = findMin(root->left);
+    int rightMin = findMin(root->right);   
+    if (leftMin < rootValue) rootValue = leftMin;
+    if (rightMin < rootValue) rootValue = rightMin;
+    return rootValue;
+}
+int findMax(Node* root) {
+    if (root == NULL) {
+        return INT_MIN;  
+    }
+    int rootValue = root->data;
+    int leftMax = findMax(root->left);
+    int rightMax = findMax(root->right);
+    if (leftMax > rootValue) rootValue = leftMax;
+    if (rightMax > rootValue) rootValue = rightMax;
+    return rootValue;
+}
+int main() {
+    Node* root = createNode(10);          
+    root->left = createNode(5);        
+    root->right = createNode(15);        
+    root->left->left = createNode(3);    
+    root->left->right = createNode(7);    
+    root->right->left = createNode(12);   
+    root->right->right = createNode(18);  
+    printf("Minimum value in the binary tree: %d\n", findMin(root));
+    printf("Maximum value in the binary tree: %d\n", findMax(root));
+    return 0;
+}
