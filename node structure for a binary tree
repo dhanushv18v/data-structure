@@ -1,19 +1,42 @@
-class TreeNode:
-    def __init__(self, value):
-        self.value = value     
-        self.left = None       
-        self.right = None      
-if __name__ == "__main__":
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.left = TreeNode(4)
-    root.left.right = TreeNode(5)
-    root.right.left = TreeNode(6)
-    root.right.right = TreeNode(7)
-    def print_tree(node, level=0):
-        if node is not None:
-            print(" " * (level * 4) + f"{node.value}")
-            print_tree(node.left, level + 1)
-            print_tree(node.right, level + 1)
-    print_tree(root)
+class TreeNode {
+
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class Main {
+
+    static void printTree(TreeNode node, int level) {
+
+        if (node != null) {
+
+            System.out.println("    ".repeat(level) + node.value);
+
+            printTree(node.left, level + 1);
+            printTree(node.right, level + 1);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        TreeNode root = new TreeNode(1);
+
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        printTree(root, 0);
+    }
+}
