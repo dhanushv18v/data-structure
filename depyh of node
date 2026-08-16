@@ -1,32 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-struct Node {
+class Node {
     int data;
-    struct Node *left;
-    struct Node *right;
-};
+    Node left;
+    Node right;
 
-struct Node* createNode(int data) {
-    struct Node* newNode =
-      (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
-    newNode->left = NULL;
-    newNode->right = NULL;
-    return newNode;
+    Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
 }
 
-int main() {
-    // Initialize and allocate memory for tree nodes
-    struct Node* firstNode = createNode(2);
-    struct Node* secondNode = createNode(3);
-    struct Node* thirdNode = createNode(4);
-    struct Node* fourthNode = createNode(5);
+public class Main {
+    public static void main(String[] args) {
 
-    // Connect binary tree nodes
-    firstNode->left = secondNode;
-    firstNode->right = thirdNode;
-    secondNode->left = fourtNode;
+        // Create nodes
+        Node firstNode = new Node(2);
+        Node secondNode = new Node(3);
+        Node thirdNode = new Node(4);
+        Node fourthNode = new Node(5);
 
-    return 0;
+        // Connect nodes
+        firstNode.left = secondNode;
+        firstNode.right = thirdNode;
+        secondNode.left = fourthNode;
+    }
 }
