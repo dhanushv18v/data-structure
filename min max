@@ -1,53 +1,67 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-typedef struct Node {
-    int data;             
-    struct Node* left;     
-    struct Node* right;    
-} Node;
-Node* createNode(int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if (newNode == NULL) {
-        printf("Memory allocation failed\n");
-        exit(1);
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int value) {
+        data = value;
+        left = null;
+        right = null;
     }
-    newNode->data = value;
-    newNode->left = NULL;
-    newNode->right = NULL;   
-    return newNode;
 }
-int findMin(Node* root) {
-    if (root == NULL) {
-        return INT_MAX; 
+
+public class Main {
+
+    static int findMin(Node root) {
+        if (root == null) {
+            return Integer.MAX_VALUE;
+        }
+
+        int rootValue = root.data;
+        int leftMin = findMin(root.left);
+        int rightMin = findMin(root.right);
+
+        if (leftMin < rootValue)
+            rootValue = leftMin;
+
+        if (rightMin < rootValue)
+            rootValue = rightMin;
+
+        return rootValue;
     }
-    int rootValue = root->data;
-    int leftMin = findMin(root->left);
-    int rightMin = findMin(root->right);   
-    if (leftMin < rootValue) rootValue = leftMin;
-    if (rightMin < rootValue) rootValue = rightMin;
-    return rootValue;
-}
-int findMax(Node* root) {
-    if (root == NULL) {
-        return INT_MIN;  
+
+    static int findMax(Node root) {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+
+        int rootValue = root.data;
+        int leftMax = findMax(root.left);
+        int rightMax = findMax(root.right);
+
+        if (leftMax > rootValue)
+            rootValue = leftMax;
+
+        if (rightMax > rootValue)
+            rootValue = rightMax;
+
+        return rootValue;
     }
-    int rootValue = root->data;
-    int leftMax = findMax(root->left);
-    int rightMax = findMax(root->right);
-    if (leftMax > rootValue) rootValue = leftMax;
-    if (rightMax > rootValue) rootValue = rightMax;
-    return rootValue;
-}
-int main() {
-    Node* root = createNode(10);          
-    root->left = createNode(5);        
-    root->right = createNode(15);        
-    root->left->left = createNode(3);    
-    root->left->right = createNode(7);    
-    root->right->left = createNode(12);   
-    root->right->right = createNode(18);  
-    printf("Minimum value in the binary tree: %d\n", findMin(root));
-    printf("Maximum value in the binary tree: %d\n", findMax(root));
-    return 0;
+
+    public static void main(String[] args) {
+
+        Node root = new Node(10);
+
+        root.left = new Node(5);
+        root.right = new Node(15);
+
+        root.left.left = new Node(3);
+        root.left.right = new Node(7);
+
+        root.right.left = new Node(12);
+        root.right.right = new Node(18);
+
+        System.out.println("Minimum value in the binary tree: " + findMin(root));
+        System.out.println("Maximum value in the binary tree: " + findMax(root));
+    }
 }
