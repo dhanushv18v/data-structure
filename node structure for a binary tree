@@ -17,7 +17,11 @@ public class Main {
 
         if (node != null) {
 
-            System.out.println("    ".repeat(level) + node.value);
+            for (int i = 0; i < level; i++) {
+                System.out.print("    ");
+            }
+
+            System.out.println(node.value);
 
             printTree(node.left, level + 1);
             printTree(node.right, level + 1);
