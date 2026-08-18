@@ -1,0 +1,88 @@
+import java.util.*;
+import java.util.Arrays;
+class dynamic{
+    final int initial=3;
+    int arr[];
+    int size;
+    int capacity;
+    dynamic(){
+        size=0;
+        arr=new int[initial];
+        capacity=initial;
+    }
+    public void insert(int val){
+        if(size==capacity){
+            expandArr();
+        }
+        arr[size++]=val;
+    }
+    private void expandArr(){
+        capacity*=2;
+        arr=java.util.Arrays.copyOf(arr,capacity);
+    }
+    public void display(){
+        if(size==0) System.out.println("Empty array");
+        else System.out.println("All values in Array: ");
+        for(int i=0;i<size;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println("");
+    }
+    public void search(int value){
+        if(size==0) System.out.println("Empty Array");
+        for(int i=0;i<size;i++){
+            if(value==arr[i]){ System.out.println("At position: "+(i+1)); break;}
+            if(i==size-1) System.out.println("Not found");
+        }
+    }
+
+}
+
+public class ArrayListDynamic {
+    public static void main(String[]args){
+        Scanner scan=new Scanner(System.in);
+        boolean use=true; int value;
+        dynamic obj=new dynamic();
+        while(use){
+            System.out.println("-------------MENU-------------");
+            System.out.println("1=Insert value");
+            System.out.println("2=Delete value at position");
+            System.out.println("3=Insert value at position");
+            System.out.println("4=Search value");
+            System.out.println("5=Display all Values");
+            System.out.println("6=Exit");
+            System.out.println("------------------------------");
+            System.out.print("Enter your choice: ");
+            int choose= scan.nextInt();
+            switch (choose){
+                case 1://insert
+                    System.out.print("Enter value to Insert: ");
+                    value=scan.nextInt();
+                    obj.insert(value);
+                    break;
+                case 2://Delete
+                    System.out.println("case 2");
+                    break;
+                case 3://update
+                    System.out.println("case three");
+                    break;
+                case 4://Search
+                    System.out.print("Enter value to Search: ");
+                    value= scan.nextInt();
+                    obj.search(value);
+                    break;
+                case 5://Display
+                    obj.display();
+                    break;
+                case 6://Exit
+                    use=false;
+                    System.out.println("Exit complete");
+                    break;
+
+                default://Default
+                    System.out.println("Enter valid option");
+                    break;
+            }
+        }
+    }
+}
